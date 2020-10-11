@@ -5,6 +5,11 @@
 /.pnp
 .pnp.js
 
+# examples
+/src/ReducerExample.tsx
+/src/Counter.tsx
+/src/TextField.tsx
+
 # testing
 /coverage
 
@@ -17,6 +22,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
+
 
 npm-debug.log*
 yarn-debug.log*
