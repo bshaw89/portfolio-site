@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
+import { AppBar, Grid, Toolbar } from '@material-ui/core';
+// import { Toolbar } from '@material-ui/core/AppBar';
 import grey from '@material-ui/core/colors/grey'
 
 import NavbarScroller from './NavbarScroller';
@@ -34,12 +35,26 @@ class App extends Component {
 
     return (
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-      <Grid >
-      <div className='App'>
-        <NavbarScroller brand={brand} links={links} />
-      </div>
-      <AboutMe />
+      <CssBaseline />
+      <Grid container 
+        direction="column" 
+        spacing={4}
+        alignContent="space-around"
+        justify="space-evenly"
+      >
+        <Grid item>
+        <AppBar position="static" color="default">
+          <Toolbar>
+            <NavbarScroller brand={brand} links={links} />
+          </Toolbar>
+        </AppBar>
+        {/* <div className='App'>
+        </div> */}
+        </Grid>
+
+        <Grid item>
+        {/* <AboutMe /> */}
+        </Grid>
       </Grid>
       </ThemeProvider>
     )
