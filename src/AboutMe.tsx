@@ -6,10 +6,12 @@ import Container from '@material-ui/core/Container';
 const AboutMe = () => {
   return (
     <Container maxWidth="md">
-    <Paper style={{ height: '100%', width: '100%' }} elevation={3}>
-      <Typography>
-        <h2>About Me</h2>
-      {"A developer who was an opera singer who loves to play as much D&D as possible."}
+    <Paper style={{ height: '100%', width: '100%' }} elevation={4}>
+      <Typography variant="h5">
+        About Me
+      </Typography>
+      <Typography variant="body1">
+      {"A developer who trained as an opera singer who loves to play as much D&D as possible."}
       </Typography>
     </Paper>
     </Container>

@@ -5,7 +5,7 @@ import Container from '@material-ui/core/Container';
 
 const Development = () => {
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="lg">
     <Paper style={{ height: '100%', width: '100%' }} elevation={3}>
       <Typography>
       {"Some of my projects."}

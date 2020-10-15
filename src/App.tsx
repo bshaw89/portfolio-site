@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { AppBar, Grid, Toolbar } from '@material-ui/core';
-// import { Toolbar } from '@material-ui/core/AppBar';
+import { BrowserRouter, Route } from 'react-router-dom';
 import grey from '@material-ui/core/colors/grey'
 
 import NavbarScroller from './NavbarScroller';
 import AboutMe from './AboutMe';
 import { CssBaseline } from '@material-ui/core';
+import Development from './Development';
 
 const theme = createMuiTheme({
   palette: {
@@ -16,6 +17,12 @@ const theme = createMuiTheme({
     }
   }
 })
+
+// const styles = theme => ({
+//   root: {
+//     flexGrow: 1
+//   }
+// })
 
 const navigation = {
   brand: { name: "NavbarScroller", to: "/" },
@@ -34,13 +41,14 @@ class App extends Component {
     const { brand, links } = navigation;
 
     return (
+      <BrowserRouter>
       <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Grid container 
-        direction="column" 
+      <Grid container={true} 
+        direction="column"
         spacing={4}
         alignContent="space-around"
-        justify="space-evenly"
+        justify="center"
       >
         <Grid item>
         <AppBar position="static" color="default">
@@ -53,10 +61,12 @@ class App extends Component {
         </Grid>
 
         <Grid item>
-        {/* <AboutMe /> */}
+          <Route path="/about" component={AboutMe} />
+          <Route path="/dev" component={Development} />
         </Grid>
       </Grid>
       </ThemeProvider>
+      </BrowserRouter>
     )
   }
 }
