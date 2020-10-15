@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { AppBar, Grid, Toolbar } from '@material-ui/core';
+import { AppBar, Grid, Toolbar, Slide } from '@material-ui/core';
 import { BrowserRouter, Route } from 'react-router-dom';
-import grey from '@material-ui/core/colors/grey'
+import { indigo, deepPurple, grey, lime, amber, blueGrey, lightGreen, lightBlue, green } from '@material-ui/core/colors';
 
 import NavbarScroller from './NavbarScroller';
 import AboutMe from './AboutMe';
 import { CssBaseline } from '@material-ui/core';
 import Development from './Development';
-
+import Contact from './Contact';
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: grey[50]
+      main: indigo[200]
+    },
+    secondary: {
+      main: lightGreen[200]
     }
   }
 })
@@ -44,26 +47,36 @@ class App extends Component {
       <BrowserRouter>
       <ThemeProvider theme={theme}>
       <CssBaseline />
+        <AppBar position="static" color="default">
+          <Toolbar>
+          <Grid container 
+        // direction="column"
+        spacing={3}
+        alignContent="space-around"
+        justify="flex-end"
+      >
+
+            <NavbarScroller brand={brand} links={links} />
+            </Grid>
+          </Toolbar>
+        </AppBar>
       <Grid container={true} 
         direction="column"
         spacing={4}
-        alignContent="space-around"
+        // alignContent="space-around"
         justify="center"
       >
         <Grid item>
-        <AppBar position="static" color="default">
-          <Toolbar>
-            <NavbarScroller brand={brand} links={links} />
-          </Toolbar>
-        </AppBar>
         {/* <div className='App'>
         </div> */}
         </Grid>
-
+        {/* <Slide> */}
         <Grid item>
-          <Route path="/about" component={AboutMe} />
-          <Route path="/dev" component={Development} />
+        <Route path="/about" component={AboutMe} />
+        <Route path="/dev" component={Development} />
+        <Route path="/contact" component={Contact} />
         </Grid>
+        {/* </Slide> */}
       </Grid>
       </ThemeProvider>
       </BrowserRouter>
