@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider, ThemeOptions, Theme } from '@material-ui/core/styles';
 import { AppBar, Grid, Toolbar, Slide } from '@material-ui/core';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { indigo, deepPurple, grey, lime, amber, blueGrey, lightGreen, lightBlue, green } from '@material-ui/core/colors';
+import { blue, pink, indigo, deepPurple, grey, lime, amber, blueGrey, lightGreen, lightBlue, green } from '@material-ui/core/colors';
 
 import NavbarScroller from './NavbarScroller';
 import AboutMe from './AboutMe';
 import { CssBaseline } from '@material-ui/core';
 import Development from './Development';
 import Contact from './Contact';
+
+
+interface Props {
+  createMuiTheme: (options?: ThemeOptions | undefined, ...args: object[]) => Theme;
+}
+
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: indigo[200]
+      main: blueGrey[900],
     },
     secondary: {
-      main: lightGreen[200]
+      main: pink[200]
     }
   }
 })
@@ -47,7 +53,7 @@ class App extends Component {
       <BrowserRouter>
       <ThemeProvider theme={theme}>
       <CssBaseline />
-        <AppBar position="static" color="default">
+        <AppBar style={{ minHeight: 120, background: theme.palette.primary.dark }} position="static">
           <Toolbar>
           <Grid container 
         // direction="column"
@@ -65,6 +71,7 @@ class App extends Component {
         spacing={4}
         // alignContent="space-around"
         justify="center"
+        style={{background: theme.palette.primary.main}}
       >
         <Grid item>
         {/* <div className='App'>
@@ -73,7 +80,7 @@ class App extends Component {
         {/* <Slide> */}
         <Grid item>
         <Route path="/about" component={AboutMe} />
-        <Route path="/dev" component={Development} />
+        <Route path="/dev" component={Development} theme={theme} />
         <Route path="/contact" component={Contact} />
         </Grid>
         {/* </Slide> */}

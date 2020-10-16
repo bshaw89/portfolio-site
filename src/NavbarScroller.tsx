@@ -1,7 +1,7 @@
 import { linkSync } from 'fs';
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import { ButtonGroup } from '@material-ui/core';
+import { ButtonGroup, Typography } from '@material-ui/core';
 
 const NavbarScroller = (props: { 
   brand: { name: string, to: string } 
@@ -9,10 +9,12 @@ const NavbarScroller = (props: {
 }) => {
   const { brand, links } = props;
   const NavLinks: any = () => 
-  <ButtonGroup variant="text" size="large" color="primary" aria-label="text primary button group">
+  <ButtonGroup variant="text" size="large" color="secondary" aria-label="text primary button group">
   {links.map((link: { name: string, to: string }) => 
     <Button key={link.name} href={link.to}>
+      <Typography variant="h6">
       {link.name}
+      </Typography>
     </Button>)}
     
     </ButtonGroup>;
