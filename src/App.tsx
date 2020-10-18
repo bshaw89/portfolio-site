@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { createMuiTheme, ThemeProvider, ThemeOptions, Theme } from '@material-ui/core/styles';
-import { AppBar, Grid, Toolbar, Slide, Typography, Container } from '@material-ui/core';
+import { AppBar, Box, Grid, Toolbar, Slide, Typography, Container } from '@material-ui/core';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { blue, pink, indigo, deepPurple, grey, lime, amber, blueGrey, lightGreen, lightBlue, green } from '@material-ui/core/colors';
+import { yellow, deepOrange, teal, red, blue, pink, indigo, deepPurple, grey, lime, amber, blueGrey, lightGreen, lightBlue, green } from '@material-ui/core/colors';
 
 import NavbarScroller from './NavbarScroller';
 import AboutMe from './AboutMe';
 import { CssBaseline } from '@material-ui/core';
 import Development from './Development';
 import Contact from './Contact';
+import Blog from './Blog';
 
 
 // type Props = {
@@ -18,12 +19,12 @@ import Contact from './Contact';
 
 const theme = createMuiTheme({
   palette: {
-    type: 'light',
+    type: 'dark',
     primary: {
-      main: lightBlue[100],
+      main: blueGrey[900],
     },
     secondary: {
-      main: pink[100]
+      main: pink[200]
     }
   }
 })
@@ -84,7 +85,7 @@ class App extends Component {
             </Toolbar>
           </AppBar>
         </Grid>
-        <Grid container item spacing={9} direction="column" style={{ paddingTop: 80, paddingRight: 0, paddingBottom: 0 }}>
+        <Grid container item spacing={9} style={{ paddingTop: 120, paddingRight: 0, paddingBottom: 0 }}>
           <Grid container item
             direction="column"
             spacing={5}
@@ -92,10 +93,11 @@ class App extends Component {
             justify="center"
             style={{background: palette.primary.main }}
           >
-            <Grid item style={{ height: "100vh" }}>
+            <Grid container item spacing={0} style={{ height: "100vh", padding: 100 }}>
               <Route path="/about" component={AboutMe} />
               <Route path="/dev" component={Development} theme={palette} />
               <Route path="/contact" component={Contact} />
+              <Route path="/blog" component={Blog} />
             </Grid>
           </Grid>
         </Grid>
