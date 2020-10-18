@@ -1,5 +1,12 @@
 .App {
+  display: flex;
   text-align: center;
+}
+
+html, body, #reactapp, .App {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .App-logo {

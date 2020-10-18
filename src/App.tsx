@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { createMuiTheme, ThemeProvider, ThemeOptions, Theme } from '@material-ui/core/styles';
-import { AppBar, Grid, Toolbar, Slide } from '@material-ui/core';
+import { AppBar, Grid, Toolbar, Slide, Typography, Container } from '@material-ui/core';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { blue, pink, indigo, deepPurple, grey, lime, amber, blueGrey, lightGreen, lightBlue, green } from '@material-ui/core/colors';
 
@@ -11,18 +11,19 @@ import Development from './Development';
 import Contact from './Contact';
 
 
-interface Props {
-  createMuiTheme: (options?: ThemeOptions | undefined, ...args: object[]) => Theme;
-}
+// type Props = {
+//   theme: () => void;
+//   // createMuiTheme: (options?: ThemeOptions | undefined, ...args: object[]) => Theme;
+// }
 
 const theme = createMuiTheme({
   palette: {
-    type: 'dark',
+    type: 'light',
     primary: {
-      main: blueGrey[900],
+      main: lightBlue[100],
     },
     secondary: {
-      main: pink[200]
+      main: pink[100]
     }
   }
 })
@@ -33,57 +34,71 @@ const theme = createMuiTheme({
 //   }
 // })
 
+
 const navigation = {
   brand: { name: "NavbarScroller", to: "/" },
   links: [
     { name: "About Me", to: "/about" },
     { name: "Blog", to: "/blog" },
     { name: "Development", to: "/dev" },
-    { name: "Games", to: "/games" },
+    { name: "RPGs", to: "/rpgs" },
     { name: "Contact", to: "/contact" }
   ]
+}
+
+type Props = {
+  theme: {(options?: ThemeOptions | undefined, ...args: object[]): Theme},
+  brand: { name: string, to: string },
+  links: Array<{ name: string; to: string }>
 }
 
 class App extends Component {
   public render() {
 
     const { brand, links } = navigation;
+    const { palette } = theme;
 
     return (
       <BrowserRouter>
       <ThemeProvider theme={theme}>
       <CssBaseline />
-        <AppBar style={{ minHeight: 120, background: theme.palette.primary.dark }} position="static">
-          <Toolbar>
-          <Grid container 
-        // direction="column"
-        spacing={3}
-        alignContent="space-around"
-        justify="flex-end"
-      >
-
-            <NavbarScroller brand={brand} links={links} />
+      <Grid container spacing={9}>
+        <Grid container item>
+          <AppBar style={{ minHeight: 120, minWidth: "100%", background: palette.primary.dark }}>
+            <Toolbar>
+              <Grid container item
+                spacing={3}
+                alignContent="space-around"
+                alignItems="center"
+                justify="space-between"
+              >
+                <Grid item>
+                  <Typography variant="h5" color='textSecondary'>
+                    Benjamin Shaw
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <NavbarScroller brand={brand} links={links} />
+                </Grid>
+              </Grid>
+            </Toolbar>
+          </AppBar>
+        </Grid>
+        <Grid container item spacing={9} direction="column" style={{ paddingTop: 80, paddingRight: 0, paddingBottom: 0 }}>
+          <Grid container item
+            direction="column"
+            spacing={5}
+            // alignContent="space-around"
+            justify="center"
+            style={{background: palette.primary.main }}
+          >
+            <Grid item style={{ height: "100vh" }}>
+              <Route path="/about" component={AboutMe} />
+              <Route path="/dev" component={Development} theme={palette} />
+              <Route path="/contact" component={Contact} />
             </Grid>
-          </Toolbar>
-        </AppBar>
-      <Grid container={true} 
-        direction="column"
-        spacing={4}
-        // alignContent="space-around"
-        justify="center"
-        style={{background: theme.palette.primary.main}}
-      >
-        <Grid item>
-        {/* <div className='App'>
-        </div> */}
+          </Grid>
         </Grid>
-        {/* <Slide> */}
-        <Grid item>
-        <Route path="/about" component={AboutMe} />
-        <Route path="/dev" component={Development} theme={theme} />
-        <Route path="/contact" component={Contact} />
-        </Grid>
-        {/* </Slide> */}
       </Grid>
       </ThemeProvider>
       </BrowserRouter>
